@@ -34,17 +34,6 @@ for i in range(0, len(full_text),chunk_size):
 
 print(chunks)
 
-
-
-
-
-
-
-
-
-
-
-
 #to split word-wise we would have done this
 # clean_text = text.split()
 
