@@ -1,20 +1,27 @@
-import fitz
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-def chunk_pdf(pdf_path:str,chunk_size:int=500):
-    pdf = fitz.open(pdf_path)
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500,
+    chunk_overlap=100,
+    separators=[
+        "\n\n",
+        "\n",
+        ". ",
+        " ",
+        ""
+    ]
+)
 
-    # print(pdf[0].get_text())
-    full_text=""
-    chunks=[]
+def chunk_doc(processed_text):
+    cleaned_chunks = []
 
-    for page_number in range(len(pdf)):
-        text=pdf[page_number].get_text()
-        full_text+=text
+    for content in processed_text:
+        chunk = text_splitter.split_text(content)
 
-    for i in range(0,len(full_text),chunk_size):
-        chunk=full_text[i:i+chunk_size]
-        clean_chunk = chunk.replace("\n","")
-        chunks.append(clean_chunk)
+        cleaned_chunks.extend(chunk) 
 
-    return chunks
+    return cleaned_chunks
+
+
+
 

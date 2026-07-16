@@ -3,4 +3,8 @@ langchain_community
 langchain-openai
 langchain-groq
 python-dotenv
+langchain-text-splitters
 langchain-google-genai
+PyMuPDF
+sentence-transformers
+scikit-learn
